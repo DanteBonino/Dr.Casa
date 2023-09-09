@@ -38,11 +38,11 @@ class Persona{
 	}
 	
 	method enfermedadesAgresivas(){
-		return enfermedades.filter{unaEnfermedad => unaEnfermedad.esAgresiva()}
+		return enfermedades.filter{unaEnfermedad => unaEnfermedad.esAgresiva(self)}
 	}
 	
 	method reducirCelulas(unaCantidad){
-		celulas -= 0.max(celulas-unaCantidad)
+		celulas = 0.max(celulas-unaCantidad)
 	}
 }
 
