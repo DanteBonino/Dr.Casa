@@ -1,0 +1,30 @@
+import personas.*
+import enfermedades.*
+
+describe "Frank`s test" {
+	method initialize(){
+		frank.contraerEnfermedad(malaria800)
+		frank.contraerEnfermedad(malaria500)
+		frank.contraerEnfermedad(otitis100)
+	}
+	
+	test "contrajo malaria" {
+		assert.that(frank.enfermedades().any{unaEnfermedad=> unaEnfermedad == malaria800})
+
+	}
+	
+	test "no supera los 45"{
+		frank.temperatura(45)
+		frank.aumentarTemperatura(1)
+		assert.equals(45, frank.temperatura())
+	}
+	
+	test "Frank vive un dia"{
+		frank.vivirUnDia()
+		assert.equals(37.4, frank.temperatura())
+	}
+	
+	test "Enfermedad que más células afecta"{
+		assert.equals(malaria800, frank.enfermedadMasAmenazante())
+	}
+}

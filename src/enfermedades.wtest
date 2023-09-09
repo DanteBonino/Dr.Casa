@@ -1,0 +1,10 @@
+import enfermedades.*
+
+describe "group of enfermedades tests" {
+
+	test "malaria se reproduce" {
+		malaria800.reproducir()
+		assert.equals(1600, malaria800.celulasAmenazadas())
+
+	}
+}
