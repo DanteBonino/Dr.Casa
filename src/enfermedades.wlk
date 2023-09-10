@@ -11,20 +11,19 @@ const otitis100 = new EnfermedadInfecciosa(
 )
 
 
-class EnfermedadInfecciosa{
-	var property celulasAmenazadas
+class EnfermedadInfecciosa inherits Enfermedad{
 	
 	method reproducir(){
 		celulasAmenazadas *= 2
 	}
 	
 	method afectar(unaPersona){
-		const gradosAAumentar = celulasAmenazadas/1000
+		const gradosAAumentar = self.celulasAmenazadas()/1000
 		unaPersona.aumentarTemperatura(gradosAAumentar)
 	}
 	
 	method esAgresiva(unaPersona){
-		return celulasAmenazadas > (unaPersona.celulas() * 0.1)
+		return self.celulasAmenazadas() > (unaPersona.celulas() * 0.1)
 	}
 }
 
@@ -32,16 +31,19 @@ const lupus = new EnfermedadAutoInmune(
 	celulasAmenazadas = 10000
 )
 
-class EnfermedadAutoInmune{
-	var property celulasAmenazadas
+class EnfermedadAutoInmune inherits Enfermedad{
 	var cantidadDeVecesQueActuo = 0
 	
 	method afectar(unaPersona){
-		unaPersona.reducirCelulas(celulasAmenazadas)
+		unaPersona.reducirCelulas(self.celulasAmenazadas())
 		cantidadDeVecesQueActuo ++
 	}
 	method esAgresiva(unaPersona){
 		return cantidadDeVecesQueActuo > 30
 	}
+}
+
+class Enfermedad{
+	var property celulasAmenazadas
 }
 
