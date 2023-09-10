@@ -28,19 +28,20 @@ class EnfermedadInfecciosa{
 	}
 }
 
-object lupus{
-	var property celulasAmenazadas = 10000
-	method afectar(unaPersona){
-		unaPersona.reducirCelulas(celulasAmenazadas)
-	}
-}
+const lupus = new EnfermedadAutoInmune(
+	celulasAmenazadas = 10000
+)
 
 class EnfermedadAutoInmune{
 	var property celulasAmenazadas
+	var cantidadDeVecesQueActuo = 0
+	
 	method afectar(unaPersona){
 		unaPersona.reducirCelulas(celulasAmenazadas)
+		cantidadDeVecesQueActuo ++
 	}
 	method esAgresiva(unaPersona){
-		/* ?? */
+		return cantidadDeVecesQueActuo > 30
 	}
 }
+

@@ -1,0 +1,39 @@
+import personas.*
+import enfermedades.*
+
+describe "Logan`s test" {
+	method initialize(){
+		logan.contraerEnfermedad(lupus)
+		logan.contraerEnfermedad(malaria500)
+		logan.contraerEnfermedad(otitis100)
+	}
+	
+	test "contrajo malaria500" {
+		assert.that(logan.enfermedades().any{unaEnfermedad=> unaEnfermedad == malaria500})
+
+	}
+	
+	test "no supera los 45"{
+		logan.temperatura(45)
+		logan.aumentarTemperatura(1)
+		assert.equals(45, logan.temperatura())
+	}
+	
+	test "Frank vive un dia"{
+		logan.vivirUnDia()
+		assert.equals(36.6, logan.temperatura())
+		assert.equals(2990000, logan.celulas())
+	}
+	
+	test "Enfermedad que más células afecta"{
+		assert.equals(lupus, logan.enfermedadMasAmenazante())
+	}
+	
+	test "Vive 31 dias afectado por las 3 enfermedades"{
+		31.times{_=>logan.vivirUnDia()}
+		assert.that(logan.estaEnComa())
+		assert.equals(2690000, logan.celulas())
+		assert.notThat(malaria500.esAgresiva(logan))
+		assert.that(lupus.esAgresiva(logan))
+	}
+}
